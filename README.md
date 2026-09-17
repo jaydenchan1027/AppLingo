@@ -1,18 +1,18 @@
-# AppLingo 1.2 — Material 3 Expressive
+# AppLingo 1.0 — Material 3 Expressive
 
 Choose a different language for each Android app with **Root or Shizuku**. Requires Android 13+.
 
-## New in 1.2
+## Features
 
 - Predictive back is explicitly enabled. Material's native bottom-sheet back handling animates gesture progress, restores a cancelled gesture, and dismisses only the top sheet when committed. No root-screen callback consumes Android's back-to-home animation.
 - The welcome and app-list screens show the phone's system language name and BCP 47 tag. Multiple system languages are listed in preference order.
 - Follow system shows those preferences in the editor and known app rows. The target app still chooses a translation it supports.
 - System locales come from `LocaleManager.getSystemLocales()`, independent of AppLingo's own language, and refresh on return to the app.
-- This APK uses the same signing certificate as v1.1 and installs over it.
+- The APK retains the existing signing certificate and uses an increased Android version code for updates.
 
 Predictive sheet progress requires Android 14+. Android 15+ supports opted-in back-to-home animations without the older developer toggle; the appearance also depends on system gesture navigation and animations. Android 13 retains normal back behavior. See [Android's predictive-back guide](https://developer.android.com/guide/navigation/custom-back/predictive-back-gesture) and [Material's bottom-sheet documentation](https://github.com/material-components/material-components-android/blob/1.14.0/docs/components/BottomSheet.md).
 
-## Material 3 Expressive interface (v1.1)
+## Material 3 Expressive interface
 
 - Actual **Material Components 1.14.0** and `Theme.Material3Expressive.DayNight.NoActionBar`.
 - Expressive rounded controls, large headings, contained app rows, adaptive launcher icon, and language-selection bottom sheets.
@@ -25,7 +25,7 @@ Predictive sheet progress requires Android 14+. Android 15+ supports opted-in ba
 
 ## Install and use
 
-1. Install `AppLingo-v1.2.apk`.
+1. Install `AppLingo-v1.0.apk`.
 2. Choose **Shizuku** or **Root** on the welcome screen.
 3. For Shizuku, use **Open Shizuku**, start its service, return, and tap **Allow Shizuku access**. For Root, tap **Allow root access** and approve the superuser prompt.
 4. Once verified, the app list opens. Search for an app and tap it.
@@ -34,11 +34,11 @@ Predictive sheet progress requires Android 14+. Android 15+ supports opted-in ba
 
 The connection badge on the app-list screen lets you change the access method. Enable **Include system apps** to see non-launchable/system packages in the current Android profile.
 
-### Upgrading from the first build
+### Updating an existing installation
 
-The private, temporary debug-signing key for v1.0 was not retained. **Uninstall v1.0 before installing v1.1.** Android's per-app language settings remain independently of AppLingo. Grant root/Shizuku access to the new installation again.
+The public release and the app both use version **1.0**. Android versionCode is **4**, so this build updates earlier builds signed with the retained certificate. The first experimental build used a different temporary signing key; only that build requires uninstalling before installing this release. Android keeps per-app language overrides independently.
 
-The new signing key is backed up separately, privately, for future updates. It is deliberately excluded from this source archive. A locally rebuilt APK signed with a different key requires uninstalling the supplied APK first.
+The signing key is backed up privately and excluded from the source archive. A locally rebuilt APK signed with a different key requires uninstalling the supplied APK first.
 
 ## Language support
 
