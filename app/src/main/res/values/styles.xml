@@ -1,0 +1,15 @@
+<resources>
+ <style name="AppTheme" parent="Theme.Material3Expressive.DayNight.NoActionBar">
+  <item name="colorPrimary">@color/primary</item><item name="colorOnPrimary">@color/on_primary</item>
+  <item name="colorPrimaryContainer">@color/primary_container</item><item name="colorOnPrimaryContainer">@color/on_primary_container</item>
+  <item name="colorSecondary">@color/secondary</item><item name="colorSecondaryContainer">@color/secondary_container</item><item name="colorOnSecondaryContainer">@color/on_secondary_container</item>
+  <item name="colorTertiaryContainer">@color/tertiary_container</item><item name="colorOnTertiaryContainer">@color/on_tertiary_container</item>
+  <item name="colorSurface">@color/surface</item><item name="colorSurfaceContainerLow">@color/surface_low</item><item name="colorSurfaceContainerHigh">@color/surface_high</item>
+  <item name="colorOnSurface">@color/on_surface</item><item name="colorOnSurfaceVariant">@color/on_surface_variant</item><item name="colorOutlineVariant">@color/outline</item>
+  <item name="android:windowBackground">?attr/colorSurface</item><item name="android:fontFamily">sans</item>
+  <item name="android:windowLightStatusBar">true</item><item name="android:windowLightNavigationBar">true</item>
+ </style>
+ <style name="AppTitle" parent="TextAppearance.Material3.HeadlineLarge"><item name="android:fontFamily">sans-serif-medium</item><item name="android:textSize">36sp</item><item name="android:letterSpacing">-0.035</item><item name="android:textColor">?attr/colorOnSurface</item></style>
+ <style name="AccessCard" parent="Widget.Material3.CardView.Filled"><item name="cardCornerRadius">28dp</item><item name="cardBackgroundColor">?attr/colorSurfaceContainerLow</item><item name="strokeColor">?attr/colorOutlineVariant</item><item name="strokeWidth">1dp</item><item name="android:checkable">true</item></style>
+ <style name="LanguageSearch" parent="Widget.Material3.TextInputLayout.FilledBox"><item name="boxCornerRadiusTopStart">28dp</item><item name="boxCornerRadiusTopEnd">28dp</item><item name="boxCornerRadiusBottomStart">28dp</item><item name="boxCornerRadiusBottomEnd">28dp</item><item name="boxStrokeWidth">0dp</item><item name="boxStrokeWidthFocused">0dp</item><item name="boxBackgroundColor">?attr/colorSurfaceContainerHigh</item></style>
+</resources>

@@ -1,0 +1,35 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/setup_screen" android:layout_width="match_parent" android:layout_height="match_parent" android:fillViewport="true" android:clipToPadding="false">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="24dp" android:paddingTop="16dp" android:paddingBottom="24dp">
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/app_name" android:textAppearance="?attr/textAppearanceTitleLarge" android:textColor="?attr/colorPrimary"/>
+  <dev.applingo.LanguageArtwork android:layout_width="match_parent" android:layout_height="128dp" android:layout_marginTop="12dp" android:importantForAccessibility="no"/>
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/welcome_title" android:textAppearance="@style/AppTitle" android:layout_marginTop="8dp"/>
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/welcome_body" android:textAppearance="?attr/textAppearanceBodyLarge" android:textColor="?attr/colorOnSurfaceVariant" android:layout_marginTop="12dp"/>
+ <TextView android:layout_marginBottom="24dp" android:id="@+id/phone_language_setup" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="12dp" android:textAppearance="?attr/textAppearanceBodyMedium" android:textColor="?attr/colorPrimary" android:accessibilityLiveRegion="polite"/>
+  <com.google.android.material.card.MaterialCardView android:id="@+id/choose_shizuku" style="@style/AccessCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:clickable="true" android:focusable="true" android:contentDescription="@string/shizuku" app:checkedIcon="@drawable/ic_check">
+   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:padding="20dp">
+    <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_wireless" app:tint="?attr/colorPrimary" android:importantForAccessibility="no"/>
+    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="20dp" android:orientation="vertical">
+     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/shizuku" android:textAppearance="?attr/textAppearanceTitleLarge"/>
+     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/shizuku_description" android:textAppearance="?attr/textAppearanceBodyMedium" android:textColor="?attr/colorOnSurfaceVariant" android:layout_marginTop="4dp"/>
+    </LinearLayout>
+   </LinearLayout>
+  </com.google.android.material.card.MaterialCardView>
+  <com.google.android.material.card.MaterialCardView android:id="@+id/choose_root" style="@style/AccessCard" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:clickable="true" android:focusable="true" android:contentDescription="@string/root" app:checkedIcon="@drawable/ic_check">
+   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:padding="20dp">
+    <ImageView android:layout_width="32dp" android:layout_height="32dp" android:src="@drawable/ic_shield" app:tint="?attr/colorPrimary" android:importantForAccessibility="no"/>
+    <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="16dp" android:layout_marginEnd="20dp" android:orientation="vertical">
+     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/root" android:textAppearance="?attr/textAppearanceTitleLarge"/>
+     <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/root_description" android:textAppearance="?attr/textAppearanceBodyMedium" android:textColor="?attr/colorOnSurfaceVariant" android:layout_marginTop="4dp"/>
+    </LinearLayout>
+   </LinearLayout>
+  </com.google.android.material.card.MaterialCardView>
+  <com.google.android.material.progressindicator.LinearProgressIndicator android:id="@+id/access_progress" android:layout_width="match_parent" android:layout_height="4dp" android:layout_marginTop="20dp" android:indeterminate="true" android:visibility="gone"/>
+  <TextView android:id="@+id/access_message" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:layout_marginBottom="8dp" android:textAppearance="?attr/textAppearanceBodyMedium" android:textColor="?attr/colorOnSurfaceVariant" android:accessibilityLiveRegion="polite"/>
+  <com.google.android.material.button.MaterialButton android:id="@+id/allow_access" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="64dp" android:text="@string/allow_shizuku" app:materialSizeOverlay="@style/SizeOverlay.Material3Expressive.Button.Medium" app:icon="@drawable/ic_arrow" app:iconGravity="textEnd"/>
+  <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center">
+   <com.google.android.material.button.MaterialButton android:id="@+id/open_shizuku" style="?attr/borderlessButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/open_shizuku"/>
+   <com.google.android.material.button.MaterialButton android:id="@+id/setup_help" style="?attr/borderlessButtonStyle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/setup_help"/>
+  </LinearLayout>
+  <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/privacy_note" android:textAppearance="?attr/textAppearanceBodySmall" android:textColor="?attr/colorOnSurfaceVariant" android:gravity="center" android:layout_marginTop="12dp"/>
+ </LinearLayout>
+</ScrollView>
