@@ -53,14 +53,15 @@ public final class AccessModel extends AndroidViewModel {
     void refreshLanguages(List<String> packages){
         if(operationBusy||gate.snapshot().phase!=AccessGate.Phase.READY)return;
         operationBusy=true;working.setValue(true);ChangeEngine.Backend backend=backend();List<String> copy=new ArrayList<>(packages);
-        worker.execute(()->{
-            Map<String,String> values=new HashMap<>();String failure=null;
-            try{int done=0;for(String pkg:copy){values.put(pkg,backend.read(pkg));final int n=++done;main.post(()->{if(!cleared)progress.setValue("Checking languages "+n+" / "+copy.size());});}}
-            catch(Exception e){failure=e.getMessage();}
+            worker.execute(()->{
+            Map<String,String> values=new HashMap<>();String failure=null;int done=0;
+            for(String pkg:copy){
+                try{values.put(pkg,backend.read(pkg));final int n=++done;main.post(()->{if(!cleared)progress.setValue("Checking languages "+n+" / "+copy.size());});}
+                catch(Exception e){failure=e.getMessage();}
+            }
             final String problem=failure;
-            main.post(()->{operationBusy=false;if(cleared)return;Map<String,String> merged=new HashMap<>(languages.getValue());merged.putAll(values);languages.setValue(merged);working.setValue(false);progress.setValue("");if(problem!=null)disconnect("Couldn’t check languages. Reconnect and try again.");});
-        });
-    }
+            main.post(()->{operationBusy=false;if(cleared)return;Map<String,String> merged=new HashMap<>(languages.getValue());merged.putAll(values);languages.setValue(merged);working.setValue(false);progress.setValue("");if(problem!=null&&values.isEmpty())disconnect("Couldn’t check languages. Reconnect and try again.");});
+        }); }
     private long permissionAttempt=-1;
     final int userId=android.os.Process.myUid()/100000;
 

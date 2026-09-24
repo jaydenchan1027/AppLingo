@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         custom.setOnClickListener(v->customTag(tag->{selected[0]=tag;choice.setText(display(tag));}));
         TextView note=label(getString(R.string.language_note),com.google.android.material.R.attr.textAppearanceBodyMedium);space(note,8,16);content.addView(note);
         MaterialButton apply=button(getString(R.string.apply),true);apply.setMinHeight(dp(60));content.addView(apply,full());
-        apply.setOnClickListener(v->{if(selected[0].isEmpty()){choice.setError("Choose a language first");return;}sheet.dismiss();activeSheet=null;confirmCompatibility(app,selected[0]);});
+        apply.setOnClickListener(v->{if(selected[0].isEmpty()){error("Choose a language first","Select a language before applying.");return;}sheet.dismiss();activeSheet=null;confirmCompatibility(app,selected[0]);});
         MaterialButton reset=button(followSystem(),false);content.addView(reset,full());reset.setOnClickListener(v->{sheet.dismiss();activeSheet=null;apply(app,"");});
         ScrollView scroll=new ScrollView(this);scroll.addView(content);sheet.setContentView(scroll);showSheet(sheet);
     }

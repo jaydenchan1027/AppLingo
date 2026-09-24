@@ -42,7 +42,7 @@ final class ChangeEngine {
                 Entry entry=journal.get(pkg);String current=backend.read(pkg);
                 if(current.equals(entry.before)){result.unchanged++;result.values.put(pkg,current);}
                 else if(!current.equals(entry.after)){
-                    result.issues.add(pkg+": changed elsewhere; left unchanged.");progress.update(++completed,total);continue;
+                    result.issues.add(pkg+": changed elsewhere; left unchanged.");
                 } else {
                     String actual=backend.write(pkg,entry.before);
                     if(!actual.equals(entry.before))throw new IllegalStateException("Couldn’t verify restore for "+pkg);
