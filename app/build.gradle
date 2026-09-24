@@ -3,7 +3,8 @@ android {
     namespace 'dev.applingo'
     compileSdk 36
     buildToolsVersion "36.0.0"
-    defaultConfig { applicationId 'dev.applingo'; minSdk 33; targetSdk 35; versionCode 5; versionName '1.0' }
+    defaultConfig { applicationId 'dev.applingo'; minSdk 33; targetSdk 35; versionCode 6; versionName '1.0.1' }
+    buildTypes { release { debuggable false minifyEnabled false } }
     buildFeatures { aidl true }
     testOptions {
         unitTests.includeAndroidResources = true
