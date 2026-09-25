@@ -1,0 +1,24 @@
+<resources>
+ <string name="app_name">AppLingo</string>
+ <string name="welcome_title">Let’s get\nyou connected.</string>
+ <string name="welcome_body">Choose one way to connect. Then give each app a language of its own.</string>
+ <string name="shizuku" translatable="false">Shizuku</string><string name="root">Root</string>
+ <string name="shizuku_description">Use wireless debugging. No root needed.</string><string name="root_description">Connect through your root manager.</string>
+ <string name="allow_shizuku">Allow Shizuku access</string><string name="allow_root">Allow root access</string><string name="checking">Checking access…</string>
+ <string name="open_shizuku">Open Shizuku</string><string name="setup_help">Setup help</string><string name="privacy_note">Only language preferences. No app data is read.</string>
+ <string name="home_title">Every app.\nYour language.</string><string name="home_body">Make your phone feel more like you.</string>
+ <string name="search_apps">Search apps</string><string name="search_languages">Search languages</string>
+ <string name="show_all">Include system apps</string><string name="your_apps">YOUR APPS</string><string name="about">About AppLingo</string>
+ <string name="loading_apps">Finding your apps…</string><string name="no_apps">No apps found</string><string name="no_apps_detail">Try another name or include system apps.</string>
+ <string name="choose_language">Choose a language</string><string name="follow_system">Follow system</string><string name="apply">Apply language</string><string name="cancel">Cancel</string>
+ <string name="current_language">Current: %1$s</string><string name="language_note">The app needs to include your chosen translation. Some apps use their own language setting.</string>
+ <string name="custom_tag">Custom language tag</string><string name="custom_tag_hint">For example, zh-Hant-HK or en</string><string name="custom_tag_title">Use a language tag</string>
+ <string name="use_tag">Use tag</string><string name="language_saved">Language preference saved</string><string name="open_app">Open app</string><string name="done">Done</string><string name="back">Back</string>
+ <string name="saving">Saving language…</string><string name="reading">Reading language…</string><string name="retry">Try again</string>
+ <plurals name="app_count"><item quantity="one">%d app</item><item quantity="other">%d apps</item></plurals>
+ <string name="phone_language">Phone language: %1$s</string>
+ <string name="follow_system_language">Follow system — %1$s</string>
+ <string name="shortcut_favorites_short">Favorites</string><string name="shortcut_favorites_long">Show favorite apps</string>
+ <string name="shortcut_refresh_short">Refresh</string><string name="shortcut_refresh_long">Refresh shown languages</string>
+ <string name="tile_label">AppLingo</string>
+</resources>

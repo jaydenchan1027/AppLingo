@@ -1,0 +1,1 @@
+Change per-app language preferences on Android 13+ with Root or Shizuku.

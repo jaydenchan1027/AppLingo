@@ -1,0 +1,21 @@
+AppLingo lets you set a different language for each installed app on Android 13 and newer, even for apps that do not expose their own language setting.
+
+How it works:
+- Connect through Root or Shizuku (wireless debugging, no root needed).
+- Search your apps by name or package, including system apps.
+- Pick a language, reset an app to Follow system, or apply one language to several apps at once.
+- Undo the last change with a persistent, verified history.
+- Pin favorites and filter to them. Refresh the currently shown languages.
+- Supports work profiles and secondary Android users.
+
+Privacy:
+- No internet permission. No ads, no analytics, no tracking.
+- Only per-app language preferences are read or written. App data is never cleared.
+- Favorites and undo history stay on device and are excluded from backups.
+
+Notes:
+- Android 13+ is required.
+- The target app must already contain the translation you select; AppLingo cannot add missing translations.
+- Language overrides remain after uninstalling AppLingo.
+
+Open source under the MIT License.

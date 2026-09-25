@@ -1,0 +1,6 @@
+- Fixed the edit sheet to show a clear "Choose a language first" dialog instead of a silent button error.
+- Undo now clears journal entries for apps changed elsewhere, so stale entries no longer keep Undo available forever.
+- Refresh shown languages now handles apps individually; one unreadable app no longer aborts the whole batch.
+- Release builds are no longer debuggable.
+- Added work profile / secondary user support, favorites export and import, a quick-settings tile, launcher shortcuts, and a real About screen.
+- Robust locale readback parsing that no longer depends on English system output.

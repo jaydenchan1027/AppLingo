@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="favorites"
+        android:enabled="true"
+        android:icon="@drawable/ic_star"
+        android:shortcutShortLabel="@string/shortcut_favorites_short"
+        android:shortcutLongLabel="@string/shortcut_favorites_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="dev.applingo"
+            android:targetClass="dev.applingo.MainActivity">
+            <extra android:name="filter" android:value="favorites" />
+        </intent>
+    </shortcut>
+    <shortcut
+        android:shortcutId="refresh"
+        android:enabled="true"
+        android:icon="@drawable/ic_refresh"
+        android:shortcutShortLabel="@string/shortcut_refresh_short"
+        android:shortcutLongLabel="@string/shortcut_refresh_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="dev.applingo"
+            android:targetClass="dev.applingo.MainActivity">
+            <extra android:name="action" android:value="refresh" />
+        </intent>
+    </shortcut>
+</shortcuts>
