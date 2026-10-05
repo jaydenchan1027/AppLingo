@@ -96,7 +96,9 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override protected void onResume(){super.onResume();refreshPhoneLanguage();if(access!=null){if(firstResume)firstResume=false;else access.resume();}}
     private String phoneLanguage(){
-        return PhoneLanguages.describe(getSystemService(android.app.LocaleManager.class).getSystemLocales(),Locale.getDefault());
+        android.app.LocaleManager lm=getSystemService(android.app.LocaleManager.class);
+        android.os.LocaleList list=lm!=null?lm.getSystemLocales():null;
+        return PhoneLanguages.describe(list!=null?list:android.os.LocaleList.getEmptyLocaleList(),Locale.getDefault());
     }
     private String followSystem(){return getString(R.string.follow_system_language,phoneLanguage());}
     private void refreshPhoneLanguage(){
@@ -224,11 +226,14 @@ public class MainActivity extends AppCompatActivity {
         empty.setVisibility(!loading&&shown.isEmpty()?View.VISIBLE:View.GONE);
     }
     private void selectApp(AppEntry app){
-        if(busy||access.snapshot().phase!=AccessGate.Phase.READY)return;hideKeyboard();setBusy(true);
+        if(busy||access.snapshot().phase!=AccessGate.Phase.READY)return;
+        hideKeyboard();setBusy(true);
+        try{
         access.locale(app.pkg,"",false,new AccessModel.Callback(){
-            public void done(String value){if(isDestroyed())return;setBusy(false);knownLocales.put(app.pkg,value);adapter.notifyDataSetChanged();loadCompatibility(app,value);}
+            public void done(String value){if(isDestroyed())return;setBusy(false);knownLocales.put(app.pkg,value==null?"":value);adapter.notifyDataSetChanged();loadCompatibility(app,value==null?"":value);}
             public void failed(String message){if(isDestroyed())return;setBusy(false);error("Couldn’t read language",message);}
         });
+        }catch(Exception e){setBusy(false);error("Couldn’t open app",e.getMessage());}
     }
     private void edit(AppEntry app,String current){
         BottomSheetDialog sheet=new BottomSheetDialog(this);activeSheet=sheet;
@@ -355,9 +360,10 @@ public class MainActivity extends AppCompatActivity {
     private void toggleFavorite(AppEntry app){if(favorites.contains(app.pkg))favorites.remove(app.pkg);else favorites.add(app.pkg);uiPrefs.edit().putStringSet("favorites",new HashSet<>(favorites)).apply();filter();}
     private void toggleSelected(AppEntry app){if(busy)return;if(!selectedApps.add(app.pkg))selectedApps.remove(app.pkg);updateSelection();adapter.notifyDataSetChanged();}
     private void loadCompatibility(AppEntry app,String current){
+        final String cur=current==null?"":current;
         setBusy(true);loader.execute(()->{List<String> tags=new ArrayList<>();
             try{android.app.LocaleConfig config=new android.app.LocaleConfig(createPackageContext(app.pkg,0));android.os.LocaleList locales=config.getSupportedLocales();if(config.getStatus()==android.app.LocaleConfig.STATUS_SUCCESS&&locales!=null)for(int i=0;i<locales.size();i++)tags.add(locales.get(i).toLanguageTag());}catch(Exception ignored){}
-            runOnUiThread(()->{if(isDestroyed())return;setBusy(false);if(access.snapshot().phase!=AccessGate.Phase.READY)return;editorSupported=tags;edit(app,current);});
+            runOnUiThread(()->{if(isDestroyed())return;setBusy(false);if(access.snapshot().phase!=AccessGate.Phase.READY)return;editorSupported=tags;try{edit(app,cur);}catch(Exception e){error("Couldn’t open app",e.getMessage());}});
         });
     }
     private String joinLanguages(List<String> tags){ArrayList<String> names=new ArrayList<>();for(String tag:tags.subList(0,Math.min(6,tags.size())))names.add(display(tag));return String.join(", ",names)+(tags.size()>6?"; "+(tags.size()-6)+" more listed first in the picker.":"");}
@@ -379,7 +385,7 @@ public class MainActivity extends AppCompatActivity {
     private void space(View v,int top,int bottom){LinearLayout.LayoutParams p=full();p.topMargin=dp(top);p.bottomMargin=dp(bottom);v.setLayoutParams(p);}
     private int color(int attr){return MaterialColors.getColor(this,attr,Color.BLACK);}
     private int dp(int n){return Math.round(n*getResources().getDisplayMetrics().density);}
-    private String display(String tags){String tag=tags.split(",")[0];return Locale.forLanguageTag(tag).getDisplayName(Locale.getDefault())+" · "+tags;}
+    private String display(String tags){if(tags==null||tags.isEmpty())return followSystem();String tag=tags.split(",")[0];return Locale.forLanguageTag(tag).getDisplayName(Locale.getDefault())+" · "+tags;}
     private void setBusy(boolean value){busy=value;actionProgress.setVisibility(value?View.VISIBLE:View.GONE);statusButton.setEnabled(!value);appList.setEnabled(!value);selectionButton.setEnabled(!value);actionsButton.setEnabled(!value);}
     private void error(String title,String message){if(!isDestroyed())new MaterialAlertDialogBuilder(this).setTitle(title).setMessage(message==null?"Please try again.":message).setPositiveButton(R.string.done,null).show();}
     private void hideKeyboard(){((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(search.getWindowToken(),0);search.clearFocus();}
