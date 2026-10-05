@@ -2,7 +2,9 @@ package dev.applingo;
 import org.junit.Test;
 import static org.junit.Assert.*;
 public class LocaleCommandsTest {
-    @Test public void resetOmitsLocales() { assertArrayEquals(new String[]{"/system/bin/cmd","locale","set-app-locales","com.example.app","--user","10"},LocaleCommands.command(true,"com.example.app",10,"")); }
+    @Test public void resetUsesResetFlag() { assertArrayEquals(new String[]{"/system/bin/cmd","locale","set-app-locales","--user","10","com.example.app","--reset"},LocaleCommands.command(true,"com.example.app",10,"")); }
+    @Test public void setCommandPlacesUserBeforePackageAndLocaleAsPositionalArg() { assertArrayEquals(new String[]{"/system/bin/cmd","locale","set-app-locales","--user","0","com.example.app","en"},LocaleCommands.command(true,"com.example.app",0,"en")); }
+    @Test public void getCommandPlacesUserBeforePackage() { assertArrayEquals(new String[]{"/system/bin/cmd","locale","get-app-locales","--user","10","com.example.app"},LocaleCommands.command(false,"com.example.app",10,"")); }
     @Test public void traditionalChinesePreservesScriptAndRegion() { assertEquals("zh-Hant-HK",LocaleCommands.normalize("zh-hant-hk")); }
     @Test public void normalizesAndDeduplicatesFallbacks() { assertEquals("en-US,ja",LocaleCommands.normalize("en-us,ja,en-US")); }
     @Test public void readbackParsesLocales() { assertEquals("zh-Hant-HK",LocaleCommands.parse("Locales for com.example.app for user 10 are [zh-Hant-HK]\n")); }

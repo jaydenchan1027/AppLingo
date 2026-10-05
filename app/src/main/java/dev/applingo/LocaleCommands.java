@@ -29,10 +29,14 @@ public final class LocaleCommands {
     public static String[] command(boolean set, String pkg, int user, String tags) {
         if (pkg == null || !pkg.matches("[A-Za-z0-9_]+(\\.[A-Za-z0-9_]+)*") || user < 0)
             throw new IllegalArgumentException("Invalid package or Android user");
+        // Options (--user) must come before positional args (package, locale tag).
+        // set-app-locales takes the locale as a positional argument; --reset clears the override.
         ArrayList<String> args = new ArrayList<>(Arrays.asList("/system/bin/cmd", "locale",
-            set ? "set-app-locales" : "get-app-locales", pkg, "--user", Integer.toString(user)));
-        if (set && !normalize(tags).isEmpty()) { args.add("--locales"); args.add(normalize(tags)); }
-        // Omitting --locales explicitly resets the override to the system default.
+            set ? "set-app-locales" : "get-app-locales", "--user", Integer.toString(user), pkg));
+        if (set) {
+            String normalized = normalize(tags);
+            args.add(normalized.isEmpty() ? "--reset" : normalized);
+        }
         return args.toArray(new String[0]);
     }
     public static String shell(String[] args) {
